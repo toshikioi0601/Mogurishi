@@ -4,8 +4,11 @@ RSpec.describe "Users", type: :system do
   let!(:user) { create(:user) }
 
   describe "ユーザー登録ページ" do
-    （省略）
-    context "ユーザー登録処理" do
+    before do
+      visit signup_path
+    end
+
+context "ユーザー登録処理" do
       it "有効なユーザーでユーザー登録を行うとユーザー登録成功のフラッシュが表示されること" do
         fill_in "ニックネーム", with: "Example User"
         fill_in "メールアドレス", with: "user@example.com"
@@ -16,12 +19,12 @@ RSpec.describe "Users", type: :system do
       end
 
       it "無効なユーザーでユーザー登録を行うとユーザー登録失敗のフラッシュが表示されること" do
-        fill_in "ニックネーム", with: ""
+        fill_in "ニックネーム", with: " "
         fill_in "メールアドレス", with: "user@example.com"
         fill_in "パスワード", with: "password"
         fill_in "パスワード(確認)", with: "pass"
         click_button "登録する"
-        expect(page).to have_content "ユーザー名を入力してください"
+        expect(page).to have_content "ニックネームを入力してください"
         expect(page).to have_content "パスワード(確認)とパスワードの入力が一致しません"
       end
     end
