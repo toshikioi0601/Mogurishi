@@ -8,6 +8,12 @@ RSpec.describe User, type: :model do
       expect(user).to be_valid
     end
 
+    context "authenticated?メソッド" do
+    it "ダイジェストが存在しない場合、falseを返すこと" do
+      expect(user.authenticated?('')).to eq false
+    end
+  end
+
     it "名前がなければ無効な状態であること" do
       user = build(:user, name: nil)
       user.valid?
