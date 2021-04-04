@@ -14,8 +14,7 @@ class User < ApplicationRecord
 class << self
     # 渡された文字列のハッシュ値を返す
     def digest(string)
-      cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
-                                                    BCrypt::Engine.cost
+      cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
       BCrypt::Password.create(string, cost: cost)
     end
 
@@ -42,7 +41,8 @@ end
   end
 
   private
-    def downcase_email
-      self.email = email.downcase
-    end
+
+  def downcase_email
+    self.email = email.downcase
+  end
 end
