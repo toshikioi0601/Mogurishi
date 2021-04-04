@@ -12,6 +12,9 @@ ja:
         password_confirmation: パスワード(確認)
         introduction: 自己紹介
         sex: 性別
+        experience: 経験本数
+        license: Cカードランク
+        organization: 指導団体
         created_at: 登録日時
         updated_at: 更新日時
       messages:
