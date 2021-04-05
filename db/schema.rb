@@ -10,7 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_04_040743) do
+ActiveRecord::Schema.define(version: 2021_04_04_075521) do
+
+  create_table "divelogs", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.float "depth"
+    t.float "water_temp"
+    t.float "temp"
+    t.integer "weather"
+    t.float "visibility"
+    t.text "reference"
+    t.integer "popularity"
+    t.text "dive_memo"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "created_at"], name: "index_divelogs_on_user_id_and_created_at"
+    t.index ["user_id"], name: "index_divelogs_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"

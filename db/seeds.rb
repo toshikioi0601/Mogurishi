@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.create!(name:  "山田 花子",
+User.create!(name:  "管理者 Admin",
             email: "sample@example.com",
             password:              "foobar",
             password_confirmation: "foobar",
@@ -20,4 +20,18 @@ User.create!(name:  "山田 花子",
               email: email,
               password:              password,
               password_confirmation: password)
+end
+
+10.times do |n|
+  Divelog.create!(name: Faker::JapaneseMedia::OnePiece.location,
+                  description: "すばらしいダイビングポイントです",
+                  depth: 10.0,
+                  water_temp: 20,
+                  temp: 30,
+                  weather: "晴れ",
+                  visibility: 15,
+                  reference: "http://sample.com",
+                  popularity: 5,
+                  dive_memo: "天気は悪かったが透明度がよかった！",
+                  user_id: 1)
 end

@@ -1,0 +1,2 @@
+module DivelogsHelper
+end

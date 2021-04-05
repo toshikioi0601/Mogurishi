@@ -94,7 +94,7 @@ RSpec.describe "Users", type: :system do
       fill_in "経験本数", with: "編集：100"
       fill_in "指導団体", with: "編集：NAUI"
       fill_in "Cカードランク", with: "編集：アドバンス"
-      
+
       click_button "更新する"
       expect(page).to have_content "プロフィールが更新されました！"
       expect(user.reload.name).to eq "Edit Example User"
@@ -129,7 +129,7 @@ RSpec.describe "Users", type: :system do
     context "ページレイアウト" do
       before do
         login_for_system(user)
-        create_list(:dish, 10, user: user)
+        create_list(:divelog, 10, user: user)
         visit user_path(user)
       end
 
@@ -152,4 +152,23 @@ RSpec.describe "Users", type: :system do
       end
     end
   end
-end
+  
+  it "ダイブログの件数が表示されていることを確認" do
+        expect(page).to have_content "料理 (#{user.divelogs.count})"
+      end
+
+      it "ダイブログの情報が表示されていることを確認" do
+        Divelog.take(5).each do |divelog|
+          expect(page).to have_link divelog.name
+          expect(page).to have_content divelog.description
+          expect(page).to have_content divelog.user.name
+          expect(page).to have_content divelog.required_time
+          expect(page).to have_content divelog.popularity
+        end
+      end
+
+      it "ダイブログのページネーションが表示されていることを確認" do
+        expect(page).to have_css "div.pagination"
+      end
+    end
+  

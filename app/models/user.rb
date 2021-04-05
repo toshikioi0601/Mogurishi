@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   before_save :downcase_email
   attr_accessor :remember_token
+  has_many :divelogs, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -14,13 +15,11 @@ class User < ApplicationRecord
 class << self
     # 渡された文字列のハッシュ値を返す
     def digest(string)
-      cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
-                                                    BCrypt::Engine.cost
+      cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
       BCrypt::Password.create(string, cost: cost)
     end
 
-    # ランダムなトークンを返す
-    def new_token
+    def new_token # ランダムなトークンを返す
       SecureRandom.urlsafe_base64
     end
 end
@@ -41,8 +40,13 @@ end
     update_attribute(:remember_digest, nil)
   end
 
+  def feed # フィード一覧を取得
+      Divelog.where("user_id = ?", id)
+  end
+
   private
-    def downcase_email
-      self.email = email.downcase
-    end
+
+  def downcase_email
+    self.email = email.downcase
+  end
 end

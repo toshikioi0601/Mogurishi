@@ -4,7 +4,7 @@ inherit_from:
 Rails:
   Enabled: true
 
-  AllCops:
+AllCops:
   Exclude:
     - 'bin/**'
     - 'config/**/*'
@@ -17,6 +17,9 @@ Rails:
     - 'db/seeds.rb'
     - 'vendor/**/**/*'
     - 'spec/*'
+    - 'spec/support/*'
+    - 'app/controllers/application_controller.rb'
+    - 'app/helpers/*'
 
 Style/TrailingCommaInHashLiteral:
   Enabled: false
@@ -43,4 +46,10 @@ Style/MixinUsage:
   Enabled: false
 
 Style/MutableConstant:
+  Enabled: false
+
+Rails/HelperInstanceVariable:
+  Enabled: false
+
+Metrics/LineLength:
   Enabled: false

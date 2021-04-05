@@ -3,6 +3,7 @@ ja:
     errors:
     models:
       user: ユーザー
+      divelog: ダイブログ
     attributes:
       user:
         id: ID
@@ -17,6 +18,19 @@ ja:
         organization: 指導団体
         created_at: 登録日時
         updated_at: 更新日時
+      divelog:
+        id: ID
+        name: ポイント名
+        description: 説明
+        depth: 水深(m)
+        temp: 気温
+        water_temp: 水温
+        weather: 天候
+        visibility: 透明度
+        reference: ショップURL
+        popularity: 人気度
+        dive_memo: ダイブメモ
+        user_id: 作成者のID
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
         restrict_dependent_destroy:

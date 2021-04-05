@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @divelogs = @user.divelogs.paginate(page: params[:page], per_page: 5)
   end
 
   def index
@@ -63,7 +64,7 @@ class UsersController < ApplicationController
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
 
-  # プロフィール編集時に許可
+    # プロフィール編集時に許可
     def user_params_update
       params.require(:user).permit(:name, :email, :introduction, :sex, :experience, :license, :organization)
     end
@@ -77,4 +78,3 @@ class UsersController < ApplicationController
       end
   end
 end
-
