@@ -1,0 +1,19 @@
+<li id="divelog-<%= divelog.id %>">
+  <%= link_to gravatar_for(divelog.user, size: 50), divelog.user %>
+  <span class="name"><%= link_to divelog.name, divelog_path(divelog) %></span>
+  <span class="description"><%= divelog.description %></span><br>
+  <span class="weather">天候：<%= divelog.weather %></span>
+  <span class="temp">気温：<%= divelog.temp %>°C　</span>
+  <span class="water_temp">水温：<%= divelog.water_temp %>°C　</span>
+  <span class="depth">水深：<%= divelog.depth %>m</span>
+  <span class="visibility">透明度：<%= divelog.visibility %>m</span>
+  <span class="popularity">人気度：<%= divelog.popularity %></span><br>
+  <span class="reference"><%= link_to "利用したショップ", divelog.reference, target: :_blank %></span>
+  <span class="timestamp">
+    <%= time_ago_in_words(divelog.created_at) %>前に投稿
+  </span>
+<% if current_user.admin? || (current_user == divelog.user) %>
+    <%= link_to "削除", divelog_path(divelog), method: :delete,
+                       data: { confirm: "本当に削除しますか？" } %>
+  <% end %>
+</li>
