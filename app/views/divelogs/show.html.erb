@@ -1,6 +1,12 @@
 <% provide(:title, "#{@divelog.name}") %>
 <div class="container">
   <div class="row">
+    <div class="col-md-4">
+      <span class="picture">
+        <%= link_to((image_tag @divelog.picture.thumb400.url), divelog_path(@divelog.id), class: 'divelog-picture') if @divelog.picture.url.present? %>
+      </span>
+    </div>
+    <div class="col-md-8">
     <h2 class="divelog-name"><%= @divelog.name %></h2>
     <div class="change-divelog">
       <% if current_user == @divelog.user %>

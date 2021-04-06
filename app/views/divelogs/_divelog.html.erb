@@ -1,6 +1,10 @@
 <li id="divelog-<%= divelog.id %>">
   <%= link_to gravatar_for(divelog.user, size: 50), divelog.user %>
   <span class="name"><%= link_to divelog.name, divelog_path(divelog) %></span>
+  <span>
+    <%= link_to((image_tag divelog.picture.thumb200.url), divelog_path(divelog.id), class: 'divelog-picture') if divelog.picture.url.present? %>
+  </span>
+  <span class="name"><%= link_to divelog.name, divelog_path(divelog) %></span>
   <span class="description"><%= divelog.description %></span><br>
   <span class="weather">天候：<%= divelog.weather %></span>
   <span class="temp">気温：<%= divelog.temp %>°C　</span>

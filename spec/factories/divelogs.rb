@@ -12,7 +12,7 @@ FactoryBot.define do
     association :user
     created_at { Time.current }
   end
-  
+
   trait :yesterday do
     created_at { 1.day.ago }
   end
@@ -23,5 +23,9 @@ FactoryBot.define do
 
   trait :one_month_ago do
     created_at { 1.month.ago }
+  end
+
+trait :picture do
+    picture { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/thumb200_default')) }
   end
 end

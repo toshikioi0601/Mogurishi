@@ -32,3 +32,5 @@
 
 /vendor #Ignore gems
 .DS_Store
+# Ignore unnecessary pictures
+/public/uploads/*

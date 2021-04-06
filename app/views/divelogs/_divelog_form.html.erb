@@ -1,5 +1,9 @@
 <%= form_with model: @divelog, local: true do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
+  <span class="picture">
+    <%= f.label :picture %>　<span class="input-unneed">※任意</span>
+    <%= f.file_field :picture, accept: 'image/jpeg,image/png', class: 'form-control', id: 'divelog_picture' %>
+  </span>
   <div class = 'form-group'>
     <%= f.label :name %> （例）大瀬崎、湾内　<span class="input-need">※必須</span>
     <%= f.text_field :name, class: 'form-control', id: 'divelog_name' %>
@@ -38,3 +42,12 @@
   </div>
   <%= f.submit nil, class: 'btn btn-primary' %>
 <% end %>
+
+<script type="text/javascript">
+  $('#divelog_picture').bind('change', function() {
+    var size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 5) {
+      alert('アップロードできる写真の最大サイズは5MBです。5MB以下の画像を選択してください');
+    }
+  });
+</script>

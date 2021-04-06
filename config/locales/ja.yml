@@ -31,6 +31,7 @@ ja:
         popularity: 人気度
         dive_memo: ダイブメモ
         user_id: 作成者のID
+        picture: 写真
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
         restrict_dependent_destroy:
