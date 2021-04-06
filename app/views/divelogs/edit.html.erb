@@ -4,6 +4,12 @@
     <div class="col-md-6 col-md-offset-3">
       <%= form_for(@divelog) do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
+        <span class="picture">
+          <%= f.label :picture %>　<span class="input-unneed">※任意</span>
+          <%= f.file_field :picture, accept: 'image/jpeg,image/png', class: 'form-control', id: 'divelog-picture' %>
+          <%= image_tag(@divelog.picture.thumb400.url) if @divelog.picture.url.present? %>
+        </span>
+        <p />
         <div class = 'form-group'>
           <%= f.label :name %> （例）大瀬崎、湾内　<span class="input-need">※必須</span>
           <%= f.text_field :name, class: 'form-control', id: 'divelog_name' %>

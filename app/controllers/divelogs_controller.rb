@@ -50,7 +50,7 @@ private
 
   def divelog_params
     params.require(:divelog).permit(:name, :discription, :weather, :temp, :water_temp,
-                                   :reference, :depth, :visibility, :popularity)
+                                   :reference, :depth, :visibility, :popularity, :picture)
   end
 
   def correct_user # 現在のユーザーが更新対象のデータを保有しているかどうか確認

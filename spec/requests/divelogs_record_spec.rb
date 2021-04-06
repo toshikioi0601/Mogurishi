@@ -3,6 +3,9 @@ require 'rails_helper'
 RSpec.describe "ダイブログ登録", type: :request do
   let!(:user) { create(:user) }
   let!(:divelog) { create(:divelog, user: user) }
+  let(:picture_path) { File.join(Rails.root, 'spec/fixtures/thumb200_default.') }
+  let(:picture) { Rack::Test::UploadedFile.new(picture_path) }
+
 
   context "ログインしているユーザーの場合" do
     before do
@@ -26,7 +29,8 @@ it "有効なダイブログデータで登録できること" do
                                                 weather: "晴れ",
                                                 visibility: 15,
                                                 reference: "http://sample.com",
-                                                popularity: 5, } }
+                                                popularity: 5,
+                                                picture: picture } }
       }.to change(divelog, :count).by(1)
       follow_redirect!
       expect(response).to render_template('divelogs/show')
@@ -42,7 +46,8 @@ it "無効なダイブログデータでは登録できないこと" do
                                             weather: "晴れ",
                                             visibility: 15,
                                             reference: "http://sample.com",
-                                            popularity: 5, } }
+                                            popularity: 5,
+                                            picture: picture } }
       }.not_to change(divelog, :count)
       expect(response).to render_template('divelogs/new')
     end
@@ -55,3 +60,4 @@ it "無効なダイブログデータでは登録できないこと" do
       expect(response).to redirect_to login_path
     end
   end
+end

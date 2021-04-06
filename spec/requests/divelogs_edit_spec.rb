@@ -3,6 +3,8 @@ require "rails_helper"
 RSpec.describe "ダイブログ編集", type: :request do
   let!(:user) { create(:user) }
   let!(:other_user) { create(:user) }
+  let(:picture2_path) { File.join(Rails.root, 'spec/fixtures/thumb400_default.png') }
+  let(:picture2) { Rack::Test::UploadedFile.new(picture2_path) }
 
   context "認可されたユーザーの場合" do
     it "レスポンスが正常に表示されること(+フレンドリーフォワーディング)" do
@@ -17,7 +19,8 @@ RSpec.describe "ダイブログ編集", type: :request do
                                                 weather: "晴れ",
                                                 visibility: 15,
                                                 reference: "http://sample.com",
-                                                popularity: 5, } }
+                                                popularity: 5,
+                                                picture: picture2 } }
       redirect_to divelog
       follow_redirect!
       expect(response).to render_template('divelogs/show')

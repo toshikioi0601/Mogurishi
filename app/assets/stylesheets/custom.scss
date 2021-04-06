@@ -278,4 +278,9 @@ h2.divelog-name {
   font-size: 15px;
   }
 
+.divelog-picture img {
+  max-width: 100%;
+  height: auto;
+  box-sizing: border-box;
+}
 }

@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "divelogs", type: :system do
   let!(:user) { create(:user) }
   let!(:divelog) { create(:divelog, user: user) }
-
+  let!(:divelog) { create(:divelog, :picture, user: user) }
 
   describe "ダイブログ登録ページ" do
     before do
@@ -34,7 +34,7 @@ RSpec.describe "divelogs", type: :system do
     end
 
     context "ダイブログ登録処理" do
-      it "有効な情報でダイブログ登録を行うと料理登録成功のフラッシュが表示されること" do
+      it "有効な情報でダイブログ登録を行うとダイブログ登録成功のフラッシュが表示されること" do
         fill_in "ポイント名", with: "大瀬崎、湾内"
         fill_in "説明", with: "すばらしいダイビングポイントです"
         fill_in "天候", with: "晴れ"
@@ -44,12 +44,13 @@ RSpec.describe "divelogs", type: :system do
         fill_in "透明度", with: 10
         fill_in "人気度", with: 5
         fill_in "ショップURL", with: "http://sample.com"
+        attach_file "divelog[picture]", "#{Rails.root}/spec/fixtures/thumb200_default.png"
         click_button "登録する"
         expect(page).to have_content "ダイブログが登録されました！"
       end
 
       it "無効な情報でダイブログ登録を行うとダイブログ登録失敗のフラッシュが表示されること" do
-        fill_in "ダイブログ名", with: ""
+        fill_in "ダイブログ名", with: "大瀬崎、湾内"
         fill_in "説明", with: "すばらしいダイビングポイントです"
         fill_in "天候", with: "晴れ"
         fill_in "気温", with: 30
@@ -60,6 +61,12 @@ RSpec.describe "divelogs", type: :system do
         fill_in "ショップURL", with: "http://sample.com"
         click_button "登録する"
         expect(page).to have_content "ダイブログ名を入力してください"
+      end
+
+      it "画像無しで登録すると、デフォルト画像が割り当てられること" do
+        fill_in "ポイント名", with: ""
+        click_button "登録する"
+        expect(page).to have_link(href: divelog_path(Divelog.first))
       end
     end
   end
@@ -83,6 +90,7 @@ RSpec.describe "divelogs", type: :system do
         expect(page).to have_content divelog.reference
         expect(page).to have_content divelog.temp
         expect(page).to have_content divelog.popularity
+        expect(page).to have_link nil, href: divelog_path(divelog), class: 'divelog-picture'
       end
     end
 
@@ -142,6 +150,7 @@ RSpec.describe "divelogs", type: :system do
         fill_in "透明度", with: 10
         fill_in "人気度", with: 2
         fill_in "ショップURL", with: "http://sample.com"
+        attach_file "divelog[picture]", "#{Rails.root}/spec/fixtures/thumb400_default.png"
         click_button "更新する"
         expect(page).to have_content "ダイブログ情報が更新されました！"
         expect(divelog.reload.name).to eq "編集：大瀬崎、湾内"
@@ -153,6 +162,7 @@ RSpec.describe "divelogs", type: :system do
         expect(divelog.reload.depth).to eq 15.0
         expect(divelog.reload.visibility).to eq 10
         expect(divelog.reload.popularity).to eq 2
+        expect(divelog.reload.picture.url).to include "thumb400_default.png"
       end
 
       it "無効な更新" do
