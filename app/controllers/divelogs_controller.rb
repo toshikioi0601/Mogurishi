@@ -8,6 +8,7 @@ before_action :correct_user, only: [:edit, :update]
 
   def show
     @divelog = Divelog.find(params[:id])
+    @comment = Comment.new
   end
 
   def destroy
