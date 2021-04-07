@@ -7,6 +7,10 @@ class CommentsController < ApplicationController
     @comment = @divelog.comments.build(user_id: current_user.id, content: params[:comment][:content])
     if !@divelog.nil? && @comment.save
       flash[:success] = "コメントを追加しました！"
+      if @user != current_user
+        @user.notifications.create(divelog_id: @divelog.id, variety: 2, from_user_id: current_user.id, content: @comment.content) # コメントは通知2
+        @user.update_attribute(:notification, true)
+      end
     else
       flash[:danger] = "空のコメントは投稿できません。"
     end
