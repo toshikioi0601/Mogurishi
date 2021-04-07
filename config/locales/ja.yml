@@ -4,6 +4,7 @@ ja:
     models:
       user: ユーザー
       divelog: ダイブログ
+      comment: コメント
     attributes:
       user:
         id: ID
@@ -32,6 +33,10 @@ ja:
         dive_memo: ダイブメモ
         user_id: 作成者のID
         picture: 写真
+      comment:
+        user_id: コメント投稿者のID
+        divelog_id: コメントされたダイブログのID
+        content: コメント
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
         restrict_dependent_destroy:
