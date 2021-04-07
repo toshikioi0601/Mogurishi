@@ -6,7 +6,14 @@ Rails.application.routes.draw do
   get :use_of_terms, to: 'top_pages#terms'
 
   get :signup,       to: 'users#new'
-  resources :users
+
+  resources :users do
+  member do
+      get :following, :followers
+    end
+  end
+
+  resources :relationships, only: [:create, :destroy]
   resources :divelogs
 
   get    :login,     to: 'sessions#new'
