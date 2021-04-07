@@ -10,6 +10,7 @@ class User < ApplicationRecord
                                    foreign_key: "followed_id",
                                    dependent: :destroy
   has_many :followers, through: :passive_relationships, source: :follower
+  has_many :favorites, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -51,7 +52,7 @@ end
   def feed # フィード一覧を取得
     following_ids = "SELECT followed_id FROM relationships
                      WHERE follower_id = :user_id"
-    Dish.where("user_id IN (#{following_ids}) OR user_id = :user_id", user_id: id)
+    Divelog.where("user_id IN (#{following_ids}) OR user_id = :user_id", user_id: id)
   end
 
 # ユーザーをフォローする
@@ -67,6 +68,21 @@ end
   # 現在のユーザーがフォローしてたらtrueを返す
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  # ダイブログをお気に入りに登録する
+  def favorite(divelog)
+    Favorite.create!(user_id: id, divelog_id: divelog.id)
+  end
+
+  # ダイブログをお気に入り解除する
+  def unfavorite(divelog)
+    Favorite.find_by(user_id: id, divelog_id: divelog.id).destroy
+  end
+
+  # 現在のユーザーがお気に入り登録してたらtrueを返す
+  def favorite?(divelog)
+    !Favorite.find_by(user_id: id, divelog_id: divelog.id).nil?
   end
 
   private

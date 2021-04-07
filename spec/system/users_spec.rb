@@ -4,7 +4,8 @@ RSpec.describe "Users", type: :system do
   let!(:user) { create(:user) }
   let!(:admin_user) { create(:user, :admin) }
   let!(:other_user) { create(:user) }
-
+  let!(:divelog) { create(:divelog, user: user) }
+  let!(:other_divelog) { create(:divelog, user: other_user) }
 
   describe "ユーザー一覧ページ" do
     context "管理者ユーザーの場合" do
@@ -165,10 +166,22 @@ RSpec.describe "Users", type: :system do
         expect(page).to have_button 'フォローする'
       end
     end
-  end
 
-  it "ダイブログの件数が表示されていることを確認" do
-        expect(page).to have_content "料理 (#{user.divelogs.count})"
+   context "お気に入り登録/解除" do
+      before do
+        login_for_system(user)
+      end
+
+      it "ダイブログのお気に入り登録/解除ができること" do
+        expect(user.favorite?(divelog)).to be_falsey
+        user.favorite(divelog)
+        expect(user.favorite?(divelog)).to be_truthy
+        user.unfavorite(divelog)
+        expect(user.favorite?(divelog)).to be_falsey
+      end
+
+      it "ダイブログの件数が表示されていることを確認" do
+        expect(page).to have_content "ダイブログ (#{user.divelogs.count})"
       end
 
       it "ダイブログの情報が表示されていることを確認" do
@@ -181,7 +194,67 @@ RSpec.describe "Users", type: :system do
         end
       end
 
+      it "トップページからお気に入り登録/解除ができること", js: true do
+        visit root_path
+        link = find('.like')
+        expect(link[:href]).to include "/favorites/#{divelog.id}/create"
+        link.click
+        link = find('.unlike')
+        expect(link[:href]).to include "/favorites/#{divelog.id}/destroy"
+        link.click
+        link = find('.like')
+        expect(link[:href]).to include "/favorites/#{divelog.id}/create"
+      end
+
+      it "ユーザー個別ページからお気に入り登録/解除ができること", js: true do
+        visit user_path(user)
+        link = find('.like')
+        expect(link[:href]).to include "/favorites/#{divelog.id}/create"
+        link.click
+        link = find('.unlike')
+        expect(link[:href]).to include "/favorites/#{divelog.id}/destroy"
+        link.click
+        link = find('.like')
+        expect(link[:href]).to include "/favorites/#{divelog.id}/create"
+      end
+
+      it "ダイブログ個別ページからお気に入り登録/解除ができること", js: true do
+        visit divelog_path(divelog)
+        link = find('.like')
+        expect(link[:href]).to include "/favorites/#{divelog.id}/create"
+        link.click
+        link = find('.unlike')
+        expect(link[:href]).to include "/favorites/#{divelog.id}/destroy"
+        link.click
+        link = find('.like')
+        expect(link[:href]).to include "/favorites/#{divelog.id}/create"
+      end
+
+      it "お気に入り一覧ページが期待通り表示されること" do
+        visit favorites_path
+        expect(page).not_to have_css ".favorite-divelog"
+        user.favorite(divelog)
+        user.favorite(other_divelog)
+        visit favorites_path
+        expect(page).to have_css ".favorite-divelog", count: 2
+        expect(page).to have_content divelog.name
+        expect(page).to have_content divelog.description
+        expect(page).to have_content "dived by #{user.name}"
+        expect(page).to have_link user.name, href: user_path(user)
+        expect(page).to have_content other_divelog.name
+        expect(page).to have_content other_divelog.description
+        expect(page).to have_content "dived by #{other_user.name}"
+        expect(page).to have_link other_user.name, href: user_path(other_user)
+        user.unfavorite(other_divelog)
+        visit favorites_path
+        expect(page).to have_css ".favorite-divelog", count: 1
+        expect(page).to have_content divelog.name
+      end
+
+
       it "ダイブログのページネーションが表示されていることを確認" do
         expect(page).to have_css "div.pagination"
       end
     end
+  end
+end
