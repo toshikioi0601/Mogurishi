@@ -5,6 +5,7 @@ ja:
       user: ユーザー
       divelog: ダイブログ
       comment: コメント
+      log: ログ
     attributes:
       user:
         id: ID
@@ -37,6 +38,9 @@ ja:
         user_id: コメント投稿者のID
         divelog_id: コメントされたダイブログのID
         content: コメント
+      log:
+        divelog_id: ログをつけるダイブログのID
+        content: メモ
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
         restrict_dependent_destroy:

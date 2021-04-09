@@ -1,5 +1,6 @@
 <% provide(:title, "#{@divelog.name}") %>
 <% @comments  = @divelog.feed_comment(@divelog.id) %>
+<% @logs  = @divelog.feed_log(@divelog.id) %>
 <div class="container">
   <div class="row">
     <div class="col-md-4">
@@ -32,6 +33,12 @@
       <div class="divelog-info">
         <h5>人気度：</h5><h4><%= @divelog.popularity %></h4>
       </div>
+      <% if current_user == @divelog.user %>
+        <div class="log">
+          <%= render "logs/feed_logs" %>
+          <%= render "logs/new" %>
+        </div>
+      <% end %>
       <div class="comment">
         <%= render "comments/feed_comments" %>
         <%= render "comments/new" %>
@@ -39,3 +46,4 @@
     </div>
   </div>
 </div>
+

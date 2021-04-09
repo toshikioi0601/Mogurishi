@@ -305,6 +305,30 @@ h2.divelog-name {
   color: grey;
 }
 
+.title-divelog {
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.divelog-created-at {
+  color: grey;
+}
+
+.logs {
+  list-style: none;
+  li {
+    font-size: 16px;
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8 ;
+    .delete {
+      font-size: 14px;
+    }
+  }
+}
+
+
+
+
 // フォロー、フォロワー数表示部
 .stats {
   margin: 5px 0;
@@ -352,3 +376,4 @@ li.new_notification > a > span {
   font-size: 16px;
 }
 }
+

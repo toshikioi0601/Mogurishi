@@ -9,6 +9,7 @@ before_action :correct_user, only: [:edit, :update]
   def show
     @divelog = Divelog.find(params[:id])
     @comment = Comment.new
+    @log = Log.new
   end
 
   def destroy
@@ -26,6 +27,7 @@ before_action :correct_user, only: [:edit, :update]
   def create
     @divelog = current_user.divelogs.build(divelog_params)
     if @divelog.save
+      Log.create(divelog_id: @divelog.id, content: @divelog.dive_memo)
       flash[:success] = "ダイブログが登録されました！"
       redirect_to divelog_path(@divelog)
     else

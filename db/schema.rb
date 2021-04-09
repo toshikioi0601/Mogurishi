@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_07_134817) do
+ActiveRecord::Schema.define(version: 2021_04_08_065337) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "divelog_id"
@@ -47,6 +47,14 @@ ActiveRecord::Schema.define(version: 2021_04_07_134817) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id", "divelog_id"], name: "index_favorites_on_user_id_and_divelog_id", unique: true
+  end
+
+  create_table "logs", force: :cascade do |t|
+    t.integer "divelog_id"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["divelog_id"], name: "index_logs_on_divelog_id"
   end
 
   create_table "notifications", force: :cascade do |t|
