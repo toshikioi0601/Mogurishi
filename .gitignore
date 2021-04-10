@@ -30,7 +30,8 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-/vendor #Ignore gems
+/vendor/bundle
+/vendor/.keep
 .DS_Store
 # Ignore unnecessary pictures
 /public/uploads/*

@@ -1,5 +1,4 @@
-@import "bootstrap-sprockets";
-@import "bootstrap";
+$main-blue: #569cfe;
 
 // ミックスイン
 @mixin box_sizing {
@@ -8,75 +7,40 @@
   box-sizing:         border-box;
 }
 
-// 全ページ共通
-body {
-  padding-top: 60px;
+ //// ヘッダー ////
+.menu-1 a:hover {
+  text-decoration: none;
+  text-decoration-width: 1px;
 }
 
-section {
-  overflow: auto;
+// 上下幅
+.fh5co-nav .top-menu {
+  padding: 18px 0;
 }
 
-textarea {
-  resize: vertical;
-}
-
-.center {
-  text-align: center;
+//// ページボディ部 ////
+#fh5co -portfolio {
+  padding: 0;
   h1 {
-    margin-bottom: 10px;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  h3 {
+    text-align: left;
   }
 }
 
-// テキストの見栄え
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1;
-}
-
-h1 {
-  font-size: 3em;
-  letter-spacing: -2px;
-  margin-bottom: 30px;
-  text-align: center;
-}
-
-h2 {
-  font-size: 1.2em;
-  letter-spacing: -1px;
-  margin-bottom: 30px;
-  text-align: center;
-  font-weight: normal;
-  color: #777 ;
-}
-
-p {
-  font-size: 1.1em;
-  line-height: 1.7em;
-}
-
-// ヘッダー
-.navbar ul{
-  margin-top: 12px;
-  margin-bottom: 12px;
-}
  #logo  {
-  float: left;
-  margin-top: 10px;
-  margin-bottom: 10px;
   img {
-    width: 150px;
+    max-width: 150%;
+    height: auto;
+    box-sizing: border-box;
   }
 }
 
-// フッター
-footer {
-  margin-top: 45px;
-  padding-top: 5px;
-  border-top: 1px solid #eaeaea ;
-  color: #777 ;
-  small {
-    float: center;
-  }
+// ロゴの上下位置調整
+.fh5co-nav #fh5co -logo {
+  font-size: 0px;
 }
 
 input, textarea, select, .uneditable-input {
@@ -142,6 +106,10 @@ input {
   margin-top: 20px;
 }
 
+.account-delete {
+  margin-top: 20px;
+}
+
 //// ユーザー一覧ページ ////
 .users {
  list-style: none;
@@ -203,6 +171,41 @@ span.picture {
 // 「新しいダイブログを作る」ボタン
 .btn-record {
   margin-top: 3em;
+  color: black;
+  background-color: $main-blue;
+  border-color: $main-blue;
+}
+
+// 料理一覧
+.divelog-user {
+  text-align: right;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+h3.divelog-name {
+  font-size: 20px;
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+.divelog-description {
+  margin-top: 10px;
+}
+
+// お気に入り
+.divelog-user {
+ margin-bottom: 20px;
+}
+
+// リスト
+.list-button {
+ margin-bottom: 20px;
+}
+
+// ログ
+.add-divelog {
+ font-weight: bold;
 }
 
 //// ダイブログ登録ページ ////
@@ -326,9 +329,6 @@ h2.divelog-name {
   }
 }
 
-
-
-
 // フォロー、フォロワー数表示部
 .stats {
   margin: 5px 0;
@@ -375,5 +375,22 @@ li.new_notification > a > span {
 .notification-message {
   font-size: 16px;
 }
+
+//// ページボディ部 ////
+
+#fh5co -about {
+  padding: 0;
 }
 
+#fh5co -wireframe {
+  padding-top: 7em;
+  padding-bottom: 0;
+}
+}
+
+//// フッター ////
+#fh5co -footer {
+  margin-top: 3em;
+  padding: 1em 0;
+  border-top: 1px solid #eaeaea ;
+}
