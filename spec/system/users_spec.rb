@@ -190,9 +190,8 @@ RSpec.describe "Users", type: :system do
           expect(page).to have_content divelog.description
           expect(page).to have_content divelog.user.name
           expect(page).to have_content divelog.required_time
-          expect(page).to have_content divelog.popularity
-        end
-      end
+          expect(page).to have_content "★" * divelog.popularity + "☆" * (5 - divelog.popularity)
+        end       
 
       it "トップページからお気に入り登録/解除ができること", js: true do
         visit root_path

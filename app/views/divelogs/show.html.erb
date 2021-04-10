@@ -1,6 +1,7 @@
 <% provide(:title, "#{@divelog.name}") %>
 <% @comments  = @divelog.feed_comment(@divelog.id) %>
 <% @logs  = @divelog.feed_log(@divelog.id) %>
+<div id="fh5co-portfolio">
 <div class="container">
   <div class="row">
     <div class="col-md-4">
@@ -45,5 +46,6 @@
       </div>
     </div>
   </div>
+</div>
 </div>
 
