@@ -2,6 +2,7 @@ class Divelog < ApplicationRecord
   belongs_to :user
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :logs, dependent: :destroy
   default_scope -> { order(created_at: :desc) }
   mount_uploader :picture, PictureUploader
 
@@ -19,6 +20,10 @@ class Divelog < ApplicationRecord
 
   def feed_comment(divelog_id)
     Comment.where("divelog_id = ?", divelog_id)
+  end
+
+  def feed_log(divelog_id)
+    Log.where("divelog_id = ?", divelog_id)
   end
 
   private
