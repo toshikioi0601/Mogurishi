@@ -29,5 +29,6 @@ production:
   collation: utf8mb4_general_ci
   host: <%= ENV['Rrds-mysql-server.cdcagfdrzfgq.ap-northeast-1.rds.amazonaws.com'] %>
   username: <%= ENV['root'] %>
-  password: <%= ENV['mogurishi'] %>
+  password: <%= ENV['qwerpoiu'] %>
+  
   
