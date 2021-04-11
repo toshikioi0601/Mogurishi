@@ -1,0 +1,396 @@
+$main-blue: #569cfe;
+
+// ミックスイン
+@mixin box_sizing {
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+}
+
+ //// ヘッダー ////
+.menu-1 a:hover {
+  text-decoration: none;
+  text-decoration-width: 1px;
+}
+
+// 上下幅
+.fh5co-nav .top-menu {
+  padding: 18px 0;
+}
+
+//// ページボディ部 ////
+#fh5co -portfolio {
+  padding: 0;
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  h3 {
+    text-align: left;
+  }
+}
+
+ #logo  {
+  img {
+    max-width: 150%;
+    height: auto;
+    box-sizing: border-box;
+  }
+}
+
+// ロゴの上下位置調整
+.fh5co-nav #fh5co -logo {
+  font-size: 0px;
+}
+
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb ;
+  width: 100%;
+  margin-bottom: 15px;
+  @include box_sizing;
+}
+
+input {
+  height: auto !important;
+}
+ #error_explanation  {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
+}
+
+.field_with_errors {
+  @extend .has-error;
+  .form-control {
+    color: $state-danger-text;
+  }
+}
+
+.checkbox {
+ margin-top: -10px;
+ margin-bottom: 10px;
+ span {
+   margin-left: 20px;
+   font-weight: normal;
+ }
+}
+ #session_remember_me  {
+ width: auto;
+ margin-left: 0;
+}
+
+//// プロフィールページ ////
+.title-profile {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eaeaea ;
+}
+
+.user-picture img {
+  max-width: 100%;
+  height: auto;
+  box-sizing: border-box;
+}
+
+.user-picture-box {
+  margin-top: 0.5em;
+  margin-left: 1em;
+}
+
+.show-user-name {
+  display: inline-block;
+}
+
+.account-edit {
+  margin-top: 20px;
+}
+
+.account-delete {
+  margin-top: 20px;
+}
+
+//// ユーザー一覧ページ ////
+.users {
+ list-style: none;
+ margin: 0;
+ li {
+   overflow: auto;
+   padding: 10px 0;
+   border-bottom: 1px solid $gray-lighter;
+ }
+}
+
+/* Divelog */
+.divelogs {
+  list-style: none;
+  padding: 0;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8 ;
+ }
+  .user {
+    margin-top: 5em;
+    padding-top: 0;
+  }
+  .description {
+    display: block;
+    margin-left: 60px;
+    img {
+      display: block;
+      padding: 5px 0;
+    }
+  }
+  .timestamp {
+    color: $gray-light;
+    display: block;
+    margin-left: 60px;
+  }
+  .gravatar {
+    float: left;
+    margin-right: 10px;
+    margin-top: 5px;
+  }
+}
+
+aside {
+  textarea {
+    height: 100px;
+    margin-bottom: 5px;
+  }
+}
+
+span.picture {
+  margin-top: 10px;
+  input {
+    border: 0;
+  }
+}
+
+//// トップページ（ログイン後） ////
+// 「新しいダイブログを作る」ボタン
+.btn-record {
+  margin-top: 3em;
+  color: black;
+  background-color: $main-blue;
+  border-color: $main-blue;
+}
+
+// 料理一覧
+.divelog-user {
+  text-align: right;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+h3.divelog-name {
+  font-size: 20px;
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+.divelog-description {
+  margin-top: 10px;
+}
+
+// お気に入り
+.divelog-user {
+ margin-bottom: 20px;
+}
+
+// リスト
+.list-button {
+ margin-bottom: 20px;
+}
+
+// ログ
+.add-divelog {
+ font-weight: bold;
+}
+
+//// ダイブログ登録ページ ////
+.input-need {
+  color: red;
+  font-size: 13px;
+}
+
+.input-unneed {
+  font-size: 13px;
+}
+
+//// ダイブログ個別ページ ////
+.divelog-user-name {
+  display: inline-block;
+}
+
+h2.divelog-name {
+  font-size: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+.divelog-reference {
+  margin-top: 30px;
+}
+
+.divelog-portion {
+  margin-top: 30px;
+}
+
+.water_temp {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  h5 {
+    font-size: 17px;
+  }
+}
+
+.title-water_temp {
+  font-size: 17px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+.show-divelog-other-info {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.divelog-other-info {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.divelog-info {
+  h5 {
+    font-size: 16px;
+    display: inline-block;
+  }
+  h4 {
+    font-size: 20px;
+    display: inline-block;
+  }
+
+.change-divelog {
+  display: inline-block;
+  }
+
+.edit-divelog .delete-divelog {
+  font-size: 15px;
+  }
+
+.divelog-picture img {
+  max-width: 100%;
+  height: auto;
+  box-sizing: border-box;
+}
+
+.title-comment {
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.comments {
+  list-style: none;
+  li {
+    font-size: 14px;
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8 ;
+    .comment {
+      font-size: 16px;
+    }
+  }
+}
+
+.comment-create-at {
+  color: grey;
+}
+
+.title-divelog {
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.divelog-created-at {
+  color: grey;
+}
+
+.logs {
+  list-style: none;
+  li {
+    font-size: 16px;
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8 ;
+    .delete {
+      font-size: 14px;
+    }
+  }
+}
+
+// フォロー、フォロワー数表示部
+.stats {
+  margin: 5px 0;
+}
+
+// お気に入り
+.like-btn-unlike {
+  color: red;
+}
+.like-btn-like {
+  color: grey;
+}
+
+a.like, a.unlike {
+  text-decoration: none;
+}
+
+.favorites {
+  list-style: none;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8 ;
+  }
+}
+
+////通知 ////
+// 新しい通知があるときは赤文字にする
+li.new_notification > a > span {
+  color: red;
+}
+
+.notifications {
+  list-style: none;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8 ;
+  }
+  .gravatar {
+    margin-right: 10px;
+    margin-top: -5px;
+  }
+}
+
+.notification-message {
+  font-size: 16px;
+}
+
+//// ページボディ部 ////
+
+#fh5co -about {
+  padding: 0;
+}
+
+#fh5co -wireframe {
+  padding-top: 7em;
+  padding-bottom: 0;
+}
+}
+
+//// フッター ////
+#fh5co -footer {
+  margin-top: 3em;
+  padding: 1em 0;
+  border-top: 1px solid #eaeaea ;
+}

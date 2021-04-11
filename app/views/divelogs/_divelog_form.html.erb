@@ -1,0 +1,53 @@
+<%= form_with model: @divelog, local: true do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <span class="picture">
+    <%= f.label :picture %>　<span class="input-unneed">※任意</span>
+    <%= f.file_field :picture, accept: 'image/jpeg,image/png', class: 'form-control', id: 'divelog_picture' %>
+  </span>
+  <div class = 'form-group'>
+    <%= f.label :name %> （例）大瀬崎、湾内　<span class="input-need">※必須</span>
+    <%= f.text_field :name, class: 'form-control', id: 'divelog_name' %>
+  </div>
+  <div class = 'form-group'>
+    <%= f.label :description %>　<span class="input-unneed">※任意</span>
+    <%= f.text_field :description, size: "60x4", class: 'form-control', id: 'divelog_description' %>
+  </div>
+  <div class = 'form-group'>
+    <%= f.label :weather %> <span class="input-unneed">※任意</span>
+    <%= f.text_field :weather, class: 'form-control', id: 'divelog_weather' %>
+  </div>
+  <div class = 'form-group'>
+    <%= f.label :temp %> [°C]　<span class="input-unneed">※任意</span>
+    <%= f.text_field :temp, size: "30x4", class: 'form-control', id: 'divelog_temp' %>
+  </div>
+  <div class = 'form-group'>
+    <%= f.label :water_temp %> [°C]　<span class="input-unneed">※任意</span>
+    <%= f.text_field :water_temp, size: "30x4", class: 'form-control', id: 'divelog_water_temp' %>
+  </div>
+  <div class = 'form-group'>
+    <%= f.label :depth %> <span class="input-unneed">※任意</span>
+    <%= f.text_field :depth, class: 'form-control', id: 'divelog_depth' %>
+  </div>
+  <div class = 'form-group'>
+    <%= f.label :visibility %> [m]　<span class="input-unneed">※任意</span>
+    <%= f.text_field :visibility, class: 'form-control', id: 'divelog_visibility' %>
+  </div>
+  <div class = 'form-group'>
+    <%= f.label :popularity %> [1~5]　<span class="input-unneed">※任意</span>
+    <%= f.text_field :popularity, class: 'form-control', id: 'divelog_popularity' %>
+  </div>
+  <div class = 'form-group'>
+    <%= f.label :reference %> [利用したショップ]　<span class="input-unneed">※任意</span>
+    <%= f.text_field :reference, class: 'form-control', id: 'divelog_reference' %>
+  </div>
+  <%= f.submit nil, class: 'btn btn-primary' %>
+<% end %>
+
+<script type="text/javascript">
+  $('#divelog_picture').bind('change', function() {
+    var size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 5) {
+      alert('アップロードできる写真の最大サイズは5MBです。5MB以下の画像を選択してください');
+    }
+  });
+</script>

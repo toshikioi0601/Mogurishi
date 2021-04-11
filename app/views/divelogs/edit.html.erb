@@ -1,0 +1,58 @@
+<% provide(:title, "ダイブログ情報の編集") %>
+<div id="fh5co-portfolio">
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <%= form_for(@divelog) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <span class="picture">
+          <%= f.label :picture %>　<span class="input-unneed">※任意</span>
+          <%= f.file_field :picture, accept: 'image/jpeg,image/png', class: 'form-control', id: 'divelog-picture' %>
+          <%= image_tag(@divelog.picture.thumb400.url) if @divelog.picture.url.present? %>
+        </span>
+        <p />
+        <div class = 'form-group'>
+          <%= f.label :name %> （例）大瀬崎、湾内　<span class="input-need">※必須</span>
+          <%= f.text_field :name, class: 'form-control', id: 'divelog_name' %>
+        </div>
+        <div class = 'form-group'>
+          <%= f.label :description %>　<span class="input-unneed">※任意</span>
+          <%= f.text_field :description, size: "60x4", class: 'form-control', id: 'divelog_description' %>
+        </div>
+        <div class = 'form-group'>
+          <%= f.label :weather %> <span class="input-unneed">※任意</span>
+          <%= f.text_field :weather, class: 'form-control', id: 'divelog_weather' %>
+        </div>
+        <div class = 'form-group'>
+          <%= f.label :temp %> [°C]　<span class="input-unneed">※任意</span>
+          <%= f.text_field :temp, size: "30x4", class: 'form-control', id: 'divelog_temp' %>
+        </div>
+        <div class = 'form-group'>
+          <%= f.label :water_temp %> [°C]　<span class="input-unneed">※任意</span>
+          <%= f.text_field :water_temp, size: "30x4", class: 'form-control', id: 'divelog_water_temp' %>
+        </div>
+        <div class = 'form-group'>
+          <%= f.label :depth %> <span class="input-unneed">※任意</span>
+          <%= f.text_field :depth, class: 'form-control', id: 'divelog_depth' %>
+        </div>
+        <div class = 'form-group'>
+          <%= f.label :visibility %> [m]　<span class="input-unneed">※任意</span>
+          <%= f.text_field :visibility, class: 'form-control', id: 'divelog_visibility' %>
+        </div>
+        <div class = 'form-group'>
+          <%= f.label :popularity %> [1~5]　<span class="input-unneed">※任意</span>
+          <%= f.text_field :popularity, class: 'form-control', id: 'divelog_popularity' %>
+        </div>
+        <div class = 'form-group'>
+          <%= f.label :reference %> [利用したショップ]　<span class="input-unneed">※任意</span>
+          <%= f.text_field :reference, class: 'form-control', id: 'divelog_reference' %>
+        </div>
+        <%= f.submit "更新する", class: "btn btn-primary" %>
+        <p></p>
+        <%= link_to "ダイブログを削除する", divelog_path(@divelog), method: :delete,
+                             data: { confirm: "本当にこのダイブログを削除してよろしいですか？" } %>
+      <% end %>
+    </div>
+  </div>
+</div>
+</div>
