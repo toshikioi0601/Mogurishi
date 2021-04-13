@@ -4,7 +4,9 @@
       <div class="row">
         <div class="col-xs-2">
           <div id="fh5co-logo">
-            <%= link_to(image_tag asset_path("/images/header_logo.jpg", :alt => "header-logo"), root_url, id: 'logo') %>
+            <%= link_to(root_url, id: 'logo') do %>
+            <%= image_tag asset_path("header_logo.jpg"), :alt => "header-logo" %>
+            <% end %>
           </div>
         </div>
         <div class="col-xs-15 text-right menu-1">
