@@ -18,6 +18,12 @@ $main-blue: #569cfe;
   padding: 18px 0;
 }
 
+.top-center {
+  background-image: image-url("background.jpg");
+  height: 1180px;
+  background-size: cover;
+}
+
 //// ページボディ部 ////
 #fh5co -portfolio {
   padding: 0;
@@ -383,7 +389,7 @@ li.new_notification > a > span {
 }
 
 #fh5co -wireframe {
-  padding-top: 7em;
+  padding-top: 3em;
   padding-bottom: 0;
 }
 }
