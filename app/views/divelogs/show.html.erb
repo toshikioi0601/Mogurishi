@@ -22,18 +22,14 @@
     </div>
     <h4><%= @divelog.description %></h4>
     <h4 class="divelog-reference">ダイブログ：<%= link_to "#{@divelog.reference}", @divelog.reference, target: "_blank" %></h4>
-    <h4 class="divelog-water_temp">：<%= @divelog.water_temp %> </h4>
-    <div class="weather">
-      <h5 class="title-weather">天候</h5>
-      <h5><%= @divelog.weather %></h5>
-    </div>
-    <div class="show-divelog-other-info">
-      <div class="divelog-info">
-        <h5>気温：</h5><h4><%= @divelog.temp %></h4> <h5>°</h5>
-      </div>
-      <div class="divelog-info">
-        <h5>人気度：</h5><h4><%= @divelog.popularity %></h4>
-      </div>
+    <h4 class="divelog-water_temp">水温: <%= @divelog.water_temp %> </h4>
+    <h4 class="title-weather">天候: <%= @divelog.weather %></h4>
+    <h4 class="divelog-temp">気温：<%= @divelog.temp %> °</h4>
+    <h4 class="show-popularity">オススメ度:
+             <% if @divelog.popularity.present? %>
+              <%= "★" * @divelog.popularity %><%= "☆" * (5 - @divelog.popularity) %>
+            <% end %>
+      </h4>
       <% if current_user == @divelog.user %>
         <div class="log">
           <%= render "logs/feed_logs" %>
@@ -44,7 +40,8 @@
         <%= render "comments/feed_comments" %>
         <%= render "comments/new" %>
       </div>
-    </div>
   </div>
+</div>
+</div>
 </div>
 

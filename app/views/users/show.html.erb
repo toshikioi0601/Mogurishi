@@ -33,13 +33,11 @@
     </div>
     <div class="row">
       <div class="col-md-9">
-        <div class="usershow">
           <% if @user.divelogs.any? %>
         <h3>ダイブログ (<%= @user.divelogs.count %>)</h3>
         <ol class="divelogs">
           <%= render @divelogs %>
         </ol>
-        </div>
         <%= will_paginate @divelogs %>
       <% end %>
     </div>

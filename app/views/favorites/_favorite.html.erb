@@ -8,7 +8,7 @@
     <div class="col-md-7">
       <p><%= link_to @divelog.name, divelog_path(@divelog) %></p>
       <p><%= @divelog.description %></p>
-      <p class="cook-user">dived by <%= link_to user.name, user_path(user) %></p>
+      <p class="divelog-user">dived by <%= link_to user.name, user_path(user) %></p>
     </div>
   </div>
 </li>
