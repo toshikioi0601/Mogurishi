@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_15_054502) do
+ActiveRecord::Schema.define(version: 2021_04_19_104353) do
 
-  create_table "Divelogs", force: :cascade do |t|
+  create_table "comments", force: :cascade do |t|
+    t.integer "divelog_id"
+    t.integer "user_id"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["divelog_id"], name: "index_comments_on_divelog_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "divelogs", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.float "depth"
@@ -29,16 +39,6 @@ ActiveRecord::Schema.define(version: 2021_04_15_054502) do
     t.string "picture"
     t.index ["user_id", "created_at"], name: "index_divelogs_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_divelogs_on_user_id"
-  end
-
-  create_table "comments", force: :cascade do |t|
-    t.integer "divelog_id"
-    t.integer "user_id"
-    t.text "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["divelog_id"], name: "index_comments_on_divelog_id"
-    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "favorites", force: :cascade do |t|
