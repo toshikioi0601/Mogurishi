@@ -52,7 +52,7 @@ before_action :correct_user, only: [:edit, :update]
 private
 
   def divelog_params
-    params.require(:divelog).permit(:name, :discription, :weather, :temp, :water_temp,
+    params.require(:divelog).permit(:name, :description, :weather, :temp, :water_temp,
                                    :reference, :depth, :visibility, :popularity, :picture)
   end
 

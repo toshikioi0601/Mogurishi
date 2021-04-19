@@ -732,7 +732,7 @@ dd {
     width: 160px;
     clear: left;
     text-align: right;
-    overflow: hidden;
+    overflow: hidde
     text-overflow: ellipsis;
     white-space: nowrap;
   }
@@ -889,7 +889,7 @@ pre code {
 }
 @media (min-width: 1200px) {
   .container {
-    width: 1170px;
+    width: 1300px;
   }
 }
 
