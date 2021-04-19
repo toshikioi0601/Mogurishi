@@ -732,7 +732,7 @@ dd {
     width: 160px;
     clear: left;
     text-align: right;
-    overflow: hidde
+    overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
