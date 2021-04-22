@@ -43,6 +43,7 @@ gem 'bootstrap-will_paginate', '1.0.0'
 gem 'carrierwave',             '1.2.2'
 gem "mini_magick",             '>= 4.9.4'
 gem 'dotenv-rails'
+gem 'ransack'
 
 group :production do
   gem 'mysql2'
