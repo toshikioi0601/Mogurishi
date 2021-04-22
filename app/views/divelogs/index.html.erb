@@ -1,0 +1,14 @@
+<% provide(:title, 'ダイブログ一覧') %>
+<div id="fh5co-portfolio">
+  <div class="container">
+    <% if @search_word.present? %>
+      <h3>”<%= @search_word %>”の検索結果：<%= @divelogs.count %>件</h3>
+    <% else %>
+      <h3>ダイブログ一覧</h3>
+    <% end %>
+    <ul class="divelogs">
+      <%= render @divelogs %>
+    </ul>
+    <%= will_paginate %>
+  </div>
+</div>
