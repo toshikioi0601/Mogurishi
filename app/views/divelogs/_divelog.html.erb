@@ -1,39 +1,39 @@
 <% @divelog = divelog %>
+
 <li id="divelog-<%= divelog.id %>">
   <div class="row">
     <div class="col-md-4">
-  <span>
+    <span>
     <%= link_to((image_tag divelog.picture.thumb200.url), divelog_path(divelog.id), class: 'divelog-picture') if divelog.picture.url.present? %>
-  </span>
-  <%= render 'users/favorite_form' %>
+    </span>
+    <%= render 'users/favorite_form' %>
   </div>
   <div class="col-md-8 escape-float">
-  <h3 class="name"><%= link_to divelog.name, divelog_path(divelog) %></h3>
-  <span class="description"><%= divelog.description %></span><br>
-  <span class="weather">天候：<%= divelog.weather %></span>
-  <span class="temp">気温：<%= divelog.temp %>°C　</span>
-  <span class="water_temp">水温：<%= divelog.water_temp %>°C　</span>
-  <span class="depth">水深：<%= divelog.depth %>m</span>
-  <span class="visibility">透明度：<%= divelog.visibility %>m</span>
-  <span class="reference"><%= link_to "利用したショップ", divelog.reference, target: :_blank %></span>
-  <span class="popularity">オススメ度：
+  <h3 class="divelog-name"><%= link_to divelog.name, divelog_path(divelog) %></h3>
+    <div class="divelog-description"><%= divelog.description %></div>
+    <div class="weather">天候：<%= divelog.weather %></div>
+    <div class="divelog-temp">気温：<%= divelog.temp %>°C　</div>
+    <div class="divelog-water_temp">水温：<%= divelog.water_temp %>°C　</div>
+    <div class="divelog-depth">水深：<%= divelog.depth %>m</div>
+    <div class="divelog-visibility">透明度：<%= divelog.visibility %>m</div>
+    <div class="divelog-show-reference"><%= link_to "利用したショップ", divelog.reference, target: :_blank %></div>
+    <span class="popularity">オススメ度：
   <% if @divelog.popularity.present? %>
-            <%= "★" * divelog.popularity %><%= "☆" * (5 - divelog.popularity) %>
-          <% end %>
-        </span>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="divelog-created-at">
-            <%= time_ago_in_words(divelog.created_at) %>前に投稿
-          </div>
+    <%= "★" * divelog.popularity %><%= "☆" * (5 - divelog.popularity) %>
+  <% end %>
+    </span>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="divelog-created-at">
+        <%= time_ago_in_words(divelog.created_at) %>前に投稿
         </div>
-        <% if current_user.admin? || (current_user == divelog.user) %>
-          <div class="col-md-6">
-            <%= link_to "削除", divelog_path(divelog), method: :delete,　data: { confirm: "本当に削除しますか？" } %>
-          </div>
-        <% end %>
       </div>
+      <% if current_user.admin? || (current_user == divelog.user) %>
+        <div class="col-md-1">
+          <%= link_to "削除", divelog_path(divelog), method: :delete,　data: { confirm: "本当に削除しますか？" } %>
+        </div>
+      <% end %>
     </div>
   </div>
 </li>

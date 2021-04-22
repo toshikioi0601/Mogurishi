@@ -30,7 +30,7 @@ ja:
         weather: 天候
         visibility: 透明度
         reference: ショップURL
-        popularity: 人気度
+        popularity: オススメ度
         dive_memo: ダイブメモ
         user_id: 作成者のID
         picture: 写真
