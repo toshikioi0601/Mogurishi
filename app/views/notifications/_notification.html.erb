@@ -12,10 +12,10 @@
     <% end %>
   </div>
   <div class="row">
-    <div class="col-md-2">
-      <%= link_to((image_tag divelog.picture.url), divelog_path(divelog), class: 'divelog-picture') %>
+    <div class="col-md-6">
+      <%= link_to((image_tag divelog.picture.thumb400.url), divelog_path(divelog), class: 'divelog-picture') %>
     </div>
-    <div class="col-md-7">
+    <div class="col-md-5">
       <p><%= link_to divelog.name, divelog_path(divelog) %></p>
       <p><%= divelog.description %></p>
     </div>
