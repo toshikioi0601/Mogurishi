@@ -31,6 +31,10 @@ before_action :correct_user, only: [:edit, :update]
   def create
     @divelog = current_user.divelogs.build(divelog_params)
     if @divelog.save
+      tags = Vision.get_image_data(@divelog.picture)
+      tags.each do |tag|
+        @divelog.tags.create(name: tag)
+      end
       Log.create(divelog_id: @divelog.id, content: @divelog.dive_memo)
       flash[:success] = "ダイブログが登録されました！"
       redirect_to divelog_path(@divelog)

@@ -5,6 +5,11 @@
 <div class="container">
   <div class="row">
     <div class="col-md-5">
+      <div class="tag-box">
+        <% @divelog.tags.each do |tag| %>
+          <span class="label"><%= tag.name %></span>
+        <% end %>
+      </div>
       <span class="picture">
         <%= link_to((image_tag @divelog.picture.thumb400.url), divelog_path(@divelog.id), class: 'divelog-picture') if @divelog.picture.url.present? %>
       </span>
