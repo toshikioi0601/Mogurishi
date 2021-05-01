@@ -10,6 +10,7 @@ module Mogurishi
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
+    config.paths.add 'lib', eager_load: true
 
     config.generators do |g|
     g.assets false          # CSS, JavaScriptファイルは生成しない
