@@ -50,6 +50,11 @@ before_action :correct_user, only: [:edit, :update]
   def update
     @divelog = Divelog.find(params[:id])
     if @divelog.update_attributes(divelog_params)
+      @divelog.tags.destroy_all
+      tags = Vision.get_image_data(@divelog.picture)
+      tags.each do |tag|
+        @divelog.tags.create(name: tag)
+      end
       flash[:success] = "ダイブログ情報が更新されました！"
       redirect_to @divelog
     else
